@@ -1,0 +1,19 @@
+<form>
+    <legend>Create User</legend>
+
+    <hr/>
+
+    <label>First Name</label>
+    <input name="firstName" type="text" data-bind="firstName" required>
+
+    <label>Last Name</label>
+    <input name="lastName" type="text" data-bind="lastName" required>
+
+    <label>Age</label>
+    <input name="age" type="number" min="1" max="100" data-bind="age" required>
+
+    <hr/>
+
+    <button id="createButton" type="button" class="btn btn-danger" disabled>Create</button>
+    <button id="cancelButton" type="button" class="btn">Cancel</button>
+</form>
