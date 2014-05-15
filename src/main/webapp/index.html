@@ -22,8 +22,10 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <a href="#myPopup" class="btn" onclick=toggleSubmitForm()>Add language</a>
+
                 <span class="icon-bar"></span>
-                <a href="#search"  class="btn" onclick=toggleSubmitForm()>Search</a>
+                <input id="searchInput" class="search-query" style="float:right" onkeyup=filterResults()>
+                <span class="icon-bar"></span>
             </a>
         </div>
     </div>

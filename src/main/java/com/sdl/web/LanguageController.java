@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.Valid;
 
 /**
  * Created by bcorpade on 4/30/2014.
@@ -23,14 +27,23 @@ public class LanguageController {
 
     @RequestMapping("/save")
     @ResponseBody
-    Language saveLanguage(@Validated Language language) {
-        baseRepository.saveOrUpdate(language);
-        return language;
+    Language saveLanguage(@Valid Language language) {
+        return languageService.saveLanguage(language);
     }
 
     @RequestMapping("/findAll")
     @ResponseBody
     Languages findAll() {
         return languageService.findLanguages();
+    }
+
+    @RequestMapping(headers ={"Accept=application/json"}, value = "/searchLanguages", method = RequestMethod.POST)
+    @ResponseBody
+    Languages searchLanguages(@RequestParam(value="val1", required=false) String mydata) {
+        if(mydata!=null && !mydata.isEmpty()) {
+            return languageService.searchLanguages(mydata);
+        } else {
+            return languageService.findLanguages();
+        }
     }
 }
