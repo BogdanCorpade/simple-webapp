@@ -9,11 +9,7 @@ function findAllLanguages() {
     $.ajax({
         type: 'GET',
         url: "/language/findAll",
-//        data: $('#myTable').serialize(),
-//        dataType: "json",
-//        context: document.body,
         success: function (data) {
-//            alert(data.toString)
             createLanguagesTable(data)
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -76,20 +72,19 @@ function filterResults(){
 }
 
 function createLanguagesTable(data){
+//    $("#tableContent").replaceWith("<div>nu merge</div>");
     if (data) {
         var len = data.languageList.length;
         var txt = "";
         if (len > 0) {
             for (var i = 0; i < len; i++) {
-//                        if(data.languageList[i].id && data.languageList[i].name && data.languageList[i].code3){
                 txt += "<tr><td>" + i + "</td><td>" + data.languageList[i].id + "</td><td>" + data.languageList[i].name + "</td><td>" + data.languageList[i].code3 + "</td></tr>";
-//                        }
             }
             if (txt != "") {
-                $("#myTable").html(txt);
+                $("#tableContent").html(txt);
             }
         } else {
-            $("#myTable").html("");
+            $("#tableContent").html("");
         }
     }
 }

@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * Created by bcorpade on 4/30/2014.
  */
 @org.springframework.stereotype.Repository
-public class BaseRepository{
+public class BaseRepository {
     @Autowired
     protected MongoTemplate mongoTemplate;
 
@@ -33,17 +33,13 @@ public class BaseRepository{
     public <T> List<T> searchLanguages(Class<T> entityClass, String language) {
         Query query = new Query();
 
-//        query.addCriteria(Criteria.where("code3").regex(language).orOperator(
-//                Criteria.where("name").regex(language)
-//        ));
-        query.addCriteria(Criteria.where("name").regex(language).orOperator(
-                Criteria.where("code3").regex(language)));
+        if (query.addCriteria(Criteria.where("name").regex("").orOperator(
+                        Criteria.where("code3").regex(language), Criteria.where("name").regex(language))) != null) {
 
+        }
         List<T> tList = mongoTemplate.find(query, entityClass);
-
         return tList;
     }
-
 
 
 }
