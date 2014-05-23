@@ -4,6 +4,44 @@
 $(document).ready(function () {
     findAllLanguages()
 });
+//sorter pentru un mediu
+$(function() {
+    $( "#sortable" ).sortable({
+        update: function(event, ui) {
+            var buttonOrder = [];
+            var i=0;
+            $('#sortable li a').each( function(e) {
+                buttonOrder[i] = $(this).attr('id');
+                i++;
+                console.log('"'+$(this).attr('id') + '",');
+
+            })
+            console.log(buttonOrder);
+            //todo build the array and send it to server
+            $(function(){
+                    $.ajax({
+                        url: '/saveOrder',
+                        type: 'POST',
+                        data: "val1="+buttonOrder,
+                        cache: false,
+                        processData: false,
+                        dataType: "Accept=application/json",
+                        success: function(data){
+                            console.log(data);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) {
+                            alert("find language error: "+errorThrown);
+                        }
+                    });
+                }
+            );
+
+        }}
+    );
+    $( "#sortable" ).disableSelection();
+});
+
+//regasire date din DB
 
 function findAllLanguages() {
     $.ajax({
@@ -17,7 +55,7 @@ function findAllLanguages() {
         }
     });
 }
-
+//toggle pentru un form
 function toggleSubmitForm() {
     if ($("#addLanguageDiv").hasClass("hidden")) {
         $("#addLanguageDiv").removeClass("hidden")
@@ -53,7 +91,7 @@ function saveLanguage() {
 
     toggleSubmitForm();
 }
-
+//autocompleter
 function filterResults(){
     $.ajax({
         url: '/language/searchLanguages',

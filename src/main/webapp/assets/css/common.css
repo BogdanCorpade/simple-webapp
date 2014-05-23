@@ -143,3 +143,7 @@ span.uneditable-input{
 .tooltip-inner{
     max-width: 500px !important;
 }
+
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; height: 30px; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;float: left; height: 30px; width: 150px;}
+#sortable li a { position: absolute; margin-left: -1.3em; width: 100px; }
