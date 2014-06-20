@@ -126,3 +126,17 @@ function createLanguagesTable(data){
         }
     }
 }
+
+$("#contactBtn").live('click', function() {
+    if($(this).hasClass("selected")) {
+        deselect();
+    } else {
+        $(this).addClass("selected");
+        $.get(this.href, function(data) {
+            $(".pop").html(data).slideFadeToggle(function() {
+                $("input[type=text]:first").focus();
+            });
+        })
+    }
+    return false;
+});
